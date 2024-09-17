@@ -11,7 +11,7 @@
 
 
 
-<title>README</title>
+<title>Data Import</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,26 +348,28 @@ display: none;
 
 
 
+<h1 class="title toc-ignore">Data Import</h1>
 
 </div>
 
 
 <div id="data-wrangling-i" class="section level1">
 <h1>Data Wrangling I</h1>
-<p>This repo has code from the first data wrangling topic in P8105.
-```{r}</p>
-<pre><code>
----
-title: &quot;Data Import&quot;
-output: github_document 
----
-
-```{r}
-library(tidyverse)</code></pre>
+<p><code>{r} ### This repo has code from the first data wrangling topic in P8105.</code></p>
+<p>##Set up data set
+<code>{r setup, echo=FALSE, message=FALSE} library(tidyverse)</code></p>
 <div id="import-the-fas-litters-csv" class="section level2">
 <h2>Import the FAS Litters CSV</h2>
-<p><code>{r} litters_df = read_csv()</code></p>
+<p><code>{r} litters_df = read_csv(&quot;FAS_litters.csv&quot;) litters_df = janitor::clean_names(litters_df)</code></p>
+</div>
+<div id="look-at-the-dataset" class="section level2">
+<h2>Look at the dataset</h2>
 <p><code>{r eval = FALSE} view(litters_df)</code></p>
+</div>
+<div id="look-at-read_csv-options" class="section level2">
+<h2>Look at read_csv options</h2>
+<p><code>{r} litters_df =    read_csv(     file = &quot;FAS_litters.csv&quot;,     skip = 1   )</code></p>
+<p>What about missing data <code>{r} litters_df</code></p>
 </div>
 </div>
 

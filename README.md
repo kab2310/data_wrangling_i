@@ -34,8 +34,32 @@ litters_df =
   )
 ```
 
-What about missing data 
+##What about missing data 
 ```{r}
-litters_df
+litters_df = 
+  read_csv(
+    file = "FAS_litters.csv",
+    na = c("NA", "", ".")
+  )
+
+litters_df = janitor:: clean_names(litters_df)
+
+pull(litters_df, gd0_weight)
+```
+
+What if we code 'group' as a factor variable?
+
+```{r}
+litters_df = 
+  read_csv(
+    file = "FAS_litters.csv",
+    na = c("NA", "", "."),
+    col_types= cols(
+      Group = col_factor()
+    )
+  )
+```
+
+
 ```
 

@@ -369,7 +369,23 @@ display: none;
 <div id="look-at-read_csv-options" class="section level2">
 <h2>Look at read_csv options</h2>
 <p><code>{r} litters_df =    read_csv(     file = &quot;FAS_litters.csv&quot;,     skip = 1   )</code></p>
-<p>What about missing data <code>{r} litters_df</code></p>
+<p>##What about missing data ```{r} litters_df = read_csv( file =
+“FAS_litters.csv”, na = c(“NA”, ““,”.”) )</p>
+<p>litters_df = janitor:: clean_names(litters_df)</p>
+<p>pull(litters_df, gd0_weight)</p>
+<pre><code>
+What if we code &#39;group&#39; as a factor variable?
+
+```{r}
+litters_df = 
+  read_csv(
+    file = &quot;FAS_litters.csv&quot;,
+    na = c(&quot;NA&quot;, &quot;&quot;, &quot;.&quot;),
+    col_types= cols(
+      Group = col_factor()
+    )
+  )</code></pre>
+<p>```</p>
 </div>
 </div>
 

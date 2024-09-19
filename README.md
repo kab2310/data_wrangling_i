@@ -11,6 +11,8 @@ output: github_document
 ##Set up data set 
 ```{r setup, echo=FALSE, message=FALSE}
 library(tidyverse)
+library(readxl)
+library(haven)
 ```
 
 
@@ -60,6 +62,28 @@ litters_df =
   )
 ```
 
+##Import an excel file 
 
+Import MLB 2011 summary data.
+```{r}
+mlb_df = read_excel("mlb11.xlsx" , sheet = "mlb11" )
 ```
+
+##Import SAS data
+```{r}
+pulse_df = read_sas("public_pulse_data.sas7bdat")
+print(pulse_df)
+```
+
+##Never use read.csv()
+
+```{r}
+litters_df = read.csv("FAS_litters.csv")
+```
+
+Never do this either:
+```{r}
+litters_df$L
+```
+
 

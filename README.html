@@ -357,7 +357,7 @@ display: none;
 <h1>Data Wrangling I</h1>
 <p><code>{r} ### This repo has code from the first data wrangling topic in P8105.</code></p>
 <p>##Set up data set
-<code>{r setup, echo=FALSE, message=FALSE} library(tidyverse)</code></p>
+<code>{r setup, echo=FALSE, message=FALSE} library(tidyverse) library(readxl) library(haven)</code></p>
 <div id="import-the-fas-litters-csv" class="section level2">
 <h2>Import the FAS Litters CSV</h2>
 <p><code>{r} litters_df = read_csv(&quot;FAS_litters.csv&quot;) litters_df = janitor::clean_names(litters_df)</code></p>
@@ -385,7 +385,14 @@ litters_df =
       Group = col_factor()
     )
   )</code></pre>
-<p>```</p>
+<p>##Import an excel file</p>
+<p>Import MLB 2011 summary data.
+<code>{r} mlb_df = read_excel(&quot;mlb11.xlsx&quot; , sheet = &quot;mlb11&quot; )</code></p>
+<p>##Import SAS data
+<code>{r} pulse_df = read_sas(&quot;public_pulse_data.sas7bdat&quot;) print(pulse_df)</code></p>
+<p>##Never use read.csv()</p>
+<p><code>{r} litters_df = read.csv(&quot;FAS_litters.csv&quot;)</code></p>
+<p>Never do this either: <code>{r} litters_df$L</code></p>
 </div>
 </div>
 

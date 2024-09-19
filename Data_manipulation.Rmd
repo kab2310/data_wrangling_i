@@ -18,7 +18,7 @@ litters_df =
 litters_df = janitor::clean_names(litters_df)
 
 pups_df = 
-  read_csv("FAS_pups.csv",  c("NA", "", ".")
+  read_csv("FAS_pups.csv",  c("NA", "", "."))
            
 pups_df = janitor::clean_names(pups_df)
 ```
@@ -52,9 +52,9 @@ select(litters_df, contains("pups"))
 ```
 
 ```{r}
-select(litters_df, GROUP=group)
+select(litters_df, GROUP = group)
 
-rename(litters_df, GROUP=group)
+rename(litters_df, GROUP = group)
 
 select(litters_df, litter_number, gd0_weight, everything())
 
@@ -100,8 +100,8 @@ drop_na(litters_df, gd0_weight)
 ```
 
 ```{r}
-filter(pups_df, sex ==1)
-filter(pups_df,pd_walk < 11. sex ==2) 
+filter(pups_df, sex == 1)
+filter(pups_df, pd_walk < 11, sex == 2) 
 ```
 
 ##'mutate'
@@ -129,4 +129,43 @@ arrange(litters_df, desc(gd0_weight))
 arrange(litters_df, pups_born_alive, gd0_weight)
 ```
 
+
+##Piping!!!!
+```{r}
+litters_df = 
+  read_csv("FAS_litters.csv", na = c("NA", ".", "")) |>
+  janitor::clean_names() |>
+  select(-pups_born_alive) |>
+  filter(group == "Con7") |>  
+  mutate(
+    wt_gain = gd18_weight - gd0_weight, 
+    group = str_to_lower(group) 
+  )
+```
+
+```{r}
+read_csv("FAS_litters.csv", na = c("NA", ".", "")) |>
+  janitor::clean_names() |>
+  mutate(wt_gain = gd18_weight - gd0_weight) |>
+  lm(wt_gain ~ pups_born_alive = _) #Underscore does?
+```
+
+
+
+```{r}
+litters_df = 
+  read_csv("FAS_litters.csv", na = c("NA", ".", "")) |>
+  janitor::clean_names() |>
+  select(-pups_born_alive) |>
+  filter(group == "Con7") |> 
+  mutate(
+    wt_gain = 
+      gd18_weight - gd0_weight, 
+    group = str_to_lower(group)
+    ) |>
+  select(-pups_born_alive) |>
+  filter(group == "con7")
+
+write_csv(litters_df, "data/cleaned_fas_littered.csv")
+```
 

@@ -99,5 +99,14 @@ drop_na(litters_df)
 drop_na(litters_df, gd0_weight)
 ```
 
+```{r}
+filter(pups_df, sex ==1)
+filter(pups_df,pd_walk < 11. sex ==2) 
+```
 
 
+##mutate
+
+
+
+##
